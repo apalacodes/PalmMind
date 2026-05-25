@@ -18,3 +18,5 @@ app.include_router(ingestion.router)
 @app.get("/health")
 def check():
     return {"status": "healthy"}
+
+

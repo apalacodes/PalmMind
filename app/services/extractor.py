@@ -2,8 +2,6 @@
 #  using PyMupdf 
 import fitz
 
-
-
 def extract_text(filename:str, content:bytes) -> str:
     if filename.endswith('.pdf'):
         return process_pdf(content)

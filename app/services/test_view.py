@@ -24,4 +24,4 @@ for point in response:
     
     # We slice [:5] so it doesn't flood your screen with all 384 dimensions
     print(f"Vector Representation (First 5 dimensions): {point.vector[:5]}...")
-    print("-" * 50)
+
