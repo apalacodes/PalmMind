@@ -30,26 +30,26 @@ async def upload_doc (file:UploadFile = File(...), strategy:str=Form(default="re
         raise HTTPException(status_code=400, detail="Invalid chunking strategy. choose either 'recursive' or 'semantic'.")
 
 
-    # Step 1: EXTRACT TEXT -------------------
+    # EXTRACT TEXT 
     # if file exists and is valid then extract text
     try:
         text = extract_text(file.filename, content)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     
-    # Step 2: CHUNK TEXT -------------------------
+    # CHUNK TEXT 
     try:
         chunks = chunk_text(text, strategy)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     
-    # Step 3: EMBED TEXT ---------------------
+    # EMBED TEXT
     try:
         vectors = get_embedding(chunks)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     
-    # Step 4 : STORE VECTORS (QDRANT) -----------------------
+    # STORE VECTORS (QDRANT) 
     try:
         vector_count = await store_vectors(chunks, vectors, file.filename)
     except Exception as e:

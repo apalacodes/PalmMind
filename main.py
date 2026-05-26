@@ -5,6 +5,8 @@ from app.services.vector_store import create_collection
 from app.db.mongodb import client 
 from app.services.memory import r 
 
+
+
 app = FastAPI(
     title="Document Ingestor & RagChatBot API",
     version="1.0.0",
@@ -28,5 +30,4 @@ app.include_router(ragbot.router)
 @app.get("/health")
 def check():
     return {"status": "healthy"}
-
 
