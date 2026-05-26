@@ -51,7 +51,7 @@ async def upload_doc (file:UploadFile = File(...), strategy:str=Form(default="re
     
     # Step 4 : STORE VECTORS (QDRANT) -----------------------
     try:
-        vector_count = store_vectors(chunks, vectors, file.filename)
+        vector_count = await store_vectors(chunks, vectors, file.filename)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -73,3 +73,23 @@ async def upload_doc (file:UploadFile = File(...), strategy:str=Form(default="re
 #     "first_vector_length": len(vectors[0]),  # should be 384
 #     "first_vector_preview": vectors[0][:5]
 # }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
