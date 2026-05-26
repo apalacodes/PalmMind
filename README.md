@@ -135,11 +135,23 @@ GROQ_API_KEY=your-groq-api-key
  
 ```json
 {
-  "filename": "job_description.pdf",
+{
+  "filename": "JobDescription.pdf",
+  "extension": "pdf",
   "strategy": "recursive",
-  "char_count": 8400,
-  "chunk_count": 12,
-  "vector_count": 12
+  "msg": "File is ingesting...",
+  "char_count": 3812,
+  "chunk_count": 5,
+  "vector_count": 5,
+  "chunks_preview": [
+    "This job is about...",
+    "The company is based in ...",
+    "Expected YOE : +3 ...",
+    "strong focus on mathematical foundations. Coding and Programming in Pyth...",
+    "competitive salary..."
+  ],
+  "preview": "We are Hiring! ..."
+}
 }
 ```
  
@@ -180,9 +192,9 @@ Liveness check.
  
 ## Chunking strategies
  
-**Recursive** splits on `\n\n` first, then `\n`, then sentences, then words — working down until chunks fit within the size limit. It's fast, requires no API calls, and works well for most documents.
+**Recursive** splits on `\n\n` first, then `\n`, then sentences on "." , then words on " " basically working down until chunks fit within the size limit. It's fast, requires no API calls, and works well for most documents.
  
-**Semantic** embeds every sentence and measures cosine distance between neighbours. Where the distance jumps (meaning the topic has shifted), it makes a split. Slower, but produces chunks that each cover one coherent idea — better for long documents with distinct sections.
+**Semantic** embeds every sentence and measures cosine distance between neighbours. Where the distance jumps (meaning the topic has shifted), it makes a split. Its slower, but produces chunks that each cover one coherent idea which is better for long documents with distinct sections.
  
 ---
  
